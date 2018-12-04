@@ -422,7 +422,7 @@ func (h *Interface) ServeDHCP(ctx context.Context, p dhcp.Packet, msgType dhcp.M
 		reply:
 
 			answer.IP = dhcp.IPAdd(handler.start, free)
-
+			answer.SrcIP = h.Ipv4
 			// Add options on the fly
 			var GlobalOptions dhcp.Options
 			var options = make(map[dhcp.OptionCode][]byte)
