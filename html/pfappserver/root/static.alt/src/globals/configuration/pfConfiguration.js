@@ -547,6 +547,12 @@ export const pfConfigurationListColumns = {
     sortable: true,
     visible: true
   },
+  desc: {
+    key: 'desc',
+    label: i18n.t('Description'),
+    sortable: true,
+    visible: true
+  },
   description: {
     key: 'description',
     label: i18n.t('Description'),
@@ -679,6 +685,11 @@ export const pfConfigurationListFields = {
     text: i18n.t('Class'),
     types: [conditionType.SUBSTRING]
   },
+  desc: {
+    value: 'desc',
+    text: i18n.t('Description'),
+    types: [conditionType.SUBSTRING]
+  },
   description: {
     value: 'description',
     text: i18n.t('Description'),
@@ -736,6 +747,18 @@ export const pfConfigurationViewFields = {
         }
       ]
     }
+  },
+  desc: {
+    label: i18n.t('Description'),
+    fields: [
+      {
+        key: 'desc',
+        component: pfFormInput,
+        validators: {
+          [i18n.t('Description required.')]: required
+        }
+      }
+    ]
   },
   description: {
     label: i18n.t('Description'),

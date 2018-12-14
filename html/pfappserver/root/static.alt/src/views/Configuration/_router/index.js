@@ -14,6 +14,7 @@ import RolesStore from '../_store/roles'
 import ScansStore from '../_store/scans'
 import SwitchesStore from '../_store/switches'
 import SwitchGroupsStore from '../_store/switchGroups'
+import SecurityEventsStore from '../_store/securityEvents'
 
 /* Policies Access Control */
 const PoliciesAccessControlSection = () => import(/* webpackChunkName: "Configuration" */ '../_components/PoliciesAccessControlSection')
@@ -49,6 +50,9 @@ const BillingTierView = () => import(/* webpackChunkName: "Configuration" */ '..
 const PortalModulesList = () => import(/* webpackChunkName: "Configuration" */ '../_components/PortalModulesList')
 const PortalModuleView = () => import(/* webpackChunkName: "Configuration" */ '../_components/PortalModuleView')
 const AccessDurationView = () => import(/* webpackChunkName: "Configuration" */ '../_components/AccessDurationView')
+
+const SecurityEventsList = () => import(/* webpackChunkName: "Configuration" */ '../_components/SecurityEventsList')
+//const SecurityEventView = () => import(/* webpackChunkName: "Configuration" */ '../_components/SecurityEventView')
 
 const route = {
   path: '/configuration',
@@ -512,6 +516,31 @@ const route = {
       component: ScansTabs,
       props: (route) => ({ tab: 'wmi_rules', query: route.query.query })
     },
+    {
+      path: 'security_events',
+      name: 'security_events',
+      component: SecurityEventsList,
+      props: (route) => ({ query: route.query.query })
+    },
+    /*
+    {
+      path: 'security_events/new',
+      name: 'newSecurityEvent',
+      component: SecurityEventView,
+      props: (route) => ({ storeName: '$_security_events', isNew: true })
+    },
+    {
+      path: 'security_event/:id',
+      name: 'security_event',
+      component: SecurityEventView,
+      props: (route) => ({ storeName: '$_security_events', id: route.params.id }),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('$_security_events/getSecurityEvent', to.params.id).then(object => {
+          next()
+        })
+      }
+    },
+    */
     /**
      * Network Configuration
      */

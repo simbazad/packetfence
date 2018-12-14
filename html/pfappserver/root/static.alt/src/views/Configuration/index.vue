@@ -66,7 +66,8 @@ export default {
                 { name: 'Scan Engines', path: '/configuration/scans/scan_engines' },
                 { name: 'WMI Rules', path: '/configuration/scans/wmi_rules' }
               ]
-            }
+            },
+            { name: 'Security Events', path: '/configuration/security_events' }
           ]
         },
         {
