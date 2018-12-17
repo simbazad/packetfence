@@ -2515,3 +2515,10 @@ export const pfConfigurationViewFields = {
     ]
   }
 }
+export const pfConfigurationSecurityEventViewDefaults = (context = {}) => {
+  return {
+    id: null,
+    priority: 4,
+  }
+}
+

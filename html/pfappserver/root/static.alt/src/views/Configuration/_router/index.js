@@ -52,7 +52,7 @@ const PortalModuleView = () => import(/* webpackChunkName: "Configuration" */ '.
 const AccessDurationView = () => import(/* webpackChunkName: "Configuration" */ '../_components/AccessDurationView')
 
 const SecurityEventsList = () => import(/* webpackChunkName: "Configuration" */ '../_components/SecurityEventsList')
-//const SecurityEventView = () => import(/* webpackChunkName: "Configuration" */ '../_components/SecurityEventView')
+const SecurityEventView = () => import(/* webpackChunkName: "Configuration" */ '../_components/SecurityEventView')
 
 const route = {
   path: '/configuration',
@@ -107,6 +107,9 @@ const route = {
     }
     if (!store.state.$_switch_groups) {
       store.registerModule('$_switch_groups', SwitchGroupsStore)
+    }
+    if (!store.state.$_security_events) {
+      store.registerModule('$_security_events', SecurityEventsStore)
     }
     next()
   },
@@ -522,7 +525,12 @@ const route = {
       component: SecurityEventsList,
       props: (route) => ({ query: route.query.query })
     },
-    /*
+    {
+      path: 'security_events',
+      name: 'security_events',
+      component: SecurityEventsList,
+      props: (route) => ({ query: route.query.query })
+    },
     {
       path: 'security_events/new',
       name: 'newSecurityEvent',
@@ -540,7 +548,6 @@ const route = {
         })
       }
     },
-    */
     /**
      * Network Configuration
      */
