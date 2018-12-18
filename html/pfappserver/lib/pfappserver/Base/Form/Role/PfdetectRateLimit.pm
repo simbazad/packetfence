@@ -1,22 +1,39 @@
-package pfappserver::Form::Config::Pfdetect::nexpose;
+package pfappserver::Base::Form::Role::PfdetectRateLimit;
 
 =head1 NAME
 
-pfappserver::Form::Config::Pfdetect::nexpose - Web form for a pfdetect detector
+pfappserver::Base::Form::Role::PfdetectRateLimit -
 
 =head1 DESCRIPTION
 
-Form definition to create or update a pfdetect detector.
+pfappserver::Base::Form::Role::PfdetectRateLimit
 
 =cut
 
-use HTML::FormHandler::Moose;
-extends 'pfappserver::Form::Config::Pfdetect';
-with qw(pfappserver::Base::Form::Role::PfdetectRateLimit);
+use strict;
+use warnings;
+use HTML::FormHandler::Moose::Role;
+with qw(pfappserver::Base::Form::Role::Help);
 
-=over
+has_field 'rate_limit' => (
+    type    => 'Duration',
+    label   => 'Rate Limit',
+    default => '5s',
+    tags    => {
+        after_element => \&help,
+        help => 'Rate limit requests.'
+    },
+);
 
-=back
+
+has_block definition =>
+  (
+   render_list => [ qw(id type status path rate_limit) ],
+  );
+
+=head1 AUTHOR
+
+Inverse inc. <info@inverse.ca>
 
 =head1 COPYRIGHT
 
@@ -41,5 +58,4 @@ USA.
 
 =cut
 
-__PACKAGE__->meta->make_immutable unless $ENV{"PF_SKIP_MAKE_IMMUTABLE"};
 1;
