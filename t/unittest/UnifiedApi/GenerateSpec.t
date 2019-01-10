@@ -366,27 +366,19 @@ cmp_deeply(
                         type => 'string',
                         description => 'Detector',
                     },
-                    status => {
-                        type => 'string',
-                        description => 'Enabled',
-                    },
-                    type => {
-                        type => 'string',
-                        description => 'Type',
-                    },
-                    path => {
-                        type => 'string',
-                        description => 'Alert pipe',
-                    },
-                },
-            },
-            {
-                type => 'object',
-                required => ['id', 'path', 'type'],
-                properties => {
-                    id => {
-                        type => 'string',
-                        description => 'Detector',
+                    'rate_limit' => {
+                        type => 'object',
+                        description => 'Rate limit requests.',
+                        properties => {
+                            unit => {
+                                type => 'string',
+                                description => 'Unit',
+                            },
+                            interval => {
+                                type => 'integer',
+                                description => 'Interval',
+                            }
+                        }
                     },
                     status => {
                         type => 'string',
@@ -422,27 +414,19 @@ cmp_deeply(
                         type => 'string',
                         description => 'Alert pipe',
                     },
-                },
-            },
-            {
-                type => 'object',
-                required => ['id', 'path', 'type'],
-                properties => {
-                    id => {
-                        type => 'string',
-                        description => 'Detector',
-                    },
-                    status => {
-                        type => 'string',
-                        description => 'Enabled',
-                    },
-                    type => {
-                        type => 'string',
-                        description => 'Type',
-                    },
-                    path => {
-                        type => 'string',
-                        description => 'Alert pipe',
+                    'rate_limit' => {
+                        type => 'object',
+                        description => 'Rate limit requests.',
+                        properties => {
+                            unit => {
+                                type => 'string',
+                                description => 'Unit',
+                            },
+                            interval => {
+                                type => 'integer',
+                                description => 'Interval',
+                            }
+                        }
                     },
                 },
             },
@@ -466,6 +450,20 @@ cmp_deeply(
                         type => 'string',
                         description => 'Alert pipe',
                     },
+                    'rate_limit' => {
+                        type => 'object',
+                        description => 'Rate limit requests.',
+                        properties => {
+                            unit => {
+                                type => 'string',
+                                description => 'Unit',
+                            },
+                            interval => {
+                                type => 'integer',
+                                description => 'Interval',
+                            }
+                        }
+                    },
                 },
             },
             {
@@ -487,6 +485,92 @@ cmp_deeply(
                     path => {
                         type => 'string',
                         description => 'Alert pipe',
+                    },
+                    'rate_limit' => {
+                        type => 'object',
+                        description => 'Rate limit requests.',
+                        properties => {
+                            unit => {
+                                type => 'string',
+                                description => 'Unit',
+                            },
+                            interval => {
+                                type => 'integer',
+                                description => 'Interval',
+                            }
+                        }
+                    },
+                },
+            },
+            {
+                type => 'object',
+                required => ['id', 'path', 'type'],
+                properties => {
+                    id => {
+                        type => 'string',
+                        description => 'Detector',
+                    },
+                    status => {
+                        type => 'string',
+                        description => 'Enabled',
+                    },
+                    type => {
+                        type => 'string',
+                        description => 'Type',
+                    },
+                    path => {
+                        type => 'string',
+                        description => 'Alert pipe',
+                    },
+                    'rate_limit' => {
+                        type => 'object',
+                        description => 'Rate limit requests.',
+                        properties => {
+                            unit => {
+                                type => 'string',
+                                description => 'Unit',
+                            },
+                            interval => {
+                                type => 'integer',
+                                description => 'Interval',
+                            }
+                        }
+                    },
+                },
+            },
+            {
+                type => 'object',
+                required => ['id', 'path', 'type'],
+                properties => {
+                    id => {
+                        type => 'string',
+                        description => 'Detector',
+                    },
+                    status => {
+                        type => 'string',
+                        description => 'Enabled',
+                    },
+                    type => {
+                        type => 'string',
+                        description => 'Type',
+                    },
+                    path => {
+                        type => 'string',
+                        description => 'Alert pipe',
+                    },
+                    'rate_limit' => {
+                        type => 'object',
+                        description => 'Rate limit requests.',
+                        properties => {
+                            unit => {
+                                type => 'string',
+                                description => 'Unit',
+                            },
+                            interval => {
+                                type => 'integer',
+                                description => 'Interval',
+                            }
+                        }
                     },
                 },
             },
@@ -545,6 +629,20 @@ cmp_deeply(
                                             },
                                         },
                                     },
+                                },
+                                'rate_limit' => {
+                                    type => 'object',
+                                    description => 'Rate limit requests.',
+                                    properties => {
+                                        unit => {
+                                            type => 'string',
+                                            description => 'Unit',
+                                        },
+                                        interval => {
+                                            type => 'integer',
+                                            description => 'Interval',
+                                        }
+                                    }
                                 },
                                 'ip_mac_translation' => {
                                     type => 'string',
