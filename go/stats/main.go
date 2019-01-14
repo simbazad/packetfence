@@ -445,7 +445,7 @@ func tailFile(stats pfconfigdriver.PfStats, config tail.Config, done chan bool) 
 	for line := range t.Lines {
 		for k, v := range proxypassthrough {
 			if k.Match([]byte(line.Text)) {
-				StatsdClient.Gauge(v, 1)
+				StatsdClient.Count(v, 1)
 			}
 		}
 	}
