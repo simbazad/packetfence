@@ -15,7 +15,7 @@ use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Field::Compound';
 with 'pfappserver::Base::Form::Role::Help';
 use namespace::autoclean;
-use PPIx::Regexp;
+use pf::constants::pfdetect;
 use pf::util qw(isenabled);
 
 =head2 name
@@ -103,7 +103,12 @@ has_field 'ip_mac_translation' => (
 has_field 'rate_limit' => (
     type    => 'Duration',
     label   => 'Rate Limit',
-    default => '0s',
+    default_method => sub {
+        {
+            unit => 's',
+            interval => 0,
+        }
+    },
     tags    => {
         after_element => \&help,
         help => 'Rate limit requests.'
