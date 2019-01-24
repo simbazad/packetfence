@@ -4,6 +4,7 @@ import pfFormSelect from '@/components/pfFormSelect'
 import pfFormTextarea from '@/components/pfFormTextarea'
 import pfFormToggle from '@/components/pfFormToggle'
 import pfFormChosen from '@/components/pfFormChosen'
+import pfFormSecurityEventTrigger from '@/components/pfFormSecurityEventTrigger'
 import {
   pfConfigurationListColumns,
   pfConfigurationListFields
@@ -104,6 +105,25 @@ export const pfConfigurationSecurityEventViewFields = (context = {}) => {
                 clearOnSelect: false,
                 closeOnSelect: false,
                 options: context.roles.map(role => { return { value: role.name, text: role.name } })
+              }
+            }
+          ]
+        },
+        {
+          label: i18n.t('Event triggers'),
+          fields: [
+            {
+              key: 'trigger',
+              component: pfFormSecurityEventTrigger,
+              attrs: {
+                collapseObject: true,
+                placeholder: i18n.t('Event triggers'),
+                trackBy: 'value',
+                label: 'text',
+                multiple: true,
+                clearOnSelect: false,
+                closeOnSelect: false,
+                options: ["device::2", "device::3"].map(trigger => { return { value: trigger, text: trigger } })
               }
             }
           ]
