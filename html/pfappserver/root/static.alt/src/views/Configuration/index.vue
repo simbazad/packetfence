@@ -47,6 +47,7 @@ export default {
           icon: 'shield-alt',
           collapsable: true,
           items: [
+            { name: 'Security Events', path: '/configuration/security_events' },
             { name: 'Fingerbank Profiling',
               items: [
                 { name: 'General Settings', path: '/configuration/profiling/general_settings' },
@@ -67,7 +68,6 @@ export default {
                 { name: 'WMI Rules', path: '/configuration/scans/wmi_rules' }
               ]
             },
-            { name: 'Security Events', path: '/configuration/security_events' }
           ]
         },
         {

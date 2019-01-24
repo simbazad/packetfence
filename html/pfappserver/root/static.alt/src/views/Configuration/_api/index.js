@@ -550,7 +550,7 @@ export default {
   },
   deleteScanEngine: id => {
     return apiCall.delete(`config/scan/${id}`)
-  }
+  },
   /**
    * Security Events
    */

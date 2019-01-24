@@ -34,7 +34,7 @@ import pfMixinEscapeKey from '@/components/pfMixinEscapeKey'
 import {
   pfConfigurationSecurityEventViewFields as fields,
   pfConfigurationSecurityEventViewDefaults as defaults
-} from '@/globals/pfConfiguration'
+} from '@/globals/configuration/pfConfigurationSecurityEvents'
 const { validationMixin } = require('vuelidate')
 
 export default {
