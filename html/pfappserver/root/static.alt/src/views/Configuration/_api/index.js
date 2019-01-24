@@ -188,7 +188,6 @@ export default {
       return response.data.item
     })
   },
-<<<<<<< HEAD
   updatePortalModule: data => {
     return apiCall.patch(`config/portal_module/${data.id}`, data).then(response => {
       return response.data
