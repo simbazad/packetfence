@@ -3,6 +3,7 @@ import pfFormInput from '@/components/pfFormInput'
 import pfFormSelect from '@/components/pfFormSelect'
 import pfFormTextarea from '@/components/pfFormTextarea'
 import pfFormToggle from '@/components/pfFormToggle'
+import pfFormChosen from '@/components/pfFormChosen'
 import {
   pfConfigurationListColumns,
   pfConfigurationListFields
@@ -14,9 +15,12 @@ import {
 } from '@/globals/pfValidators'
 
 const {
+  numeric,
   required,
   alphaNum,
-  maxLength
+  maxLength,
+  minValue,
+  maxValue
 } = require('vuelidate/lib/validators')
 
 export const pfConfigurationSecurityEventsListColumns = [
@@ -40,67 +44,72 @@ export const pfConfigurationSecurityEventViewFields = (context = {}) => {
   const { isNew = false, isClone = false } = context
   return [
     {
-      label: i18n.t('Identifier'),
+      tab: null, // ignore tabs
       fields: [
         {
-          key: 'id',
-          component: pfFormInput,
-          attrs: {
-            disabled: (!isNew && !isClone)
-          },
-          validators: {
-            [i18n.t('Name required.')]: required,
-            [i18n.t('Numeric value required.')]: numeric
-          }
-        }
-      ]
-    },
-    {
-      label: i18n.t('Description'),
-      fields: [
+          label: i18n.t('Identifier'),
+          fields: [
+            {
+              key: 'id',
+              component: pfFormInput,
+              attrs: {
+                disabled: (!isNew && !isClone)
+              },
+              validators: {
+                [i18n.t('Name required.')]: required,
+                [i18n.t('Numeric value required.')]: numeric
+              }
+            }
+          ]
+        },
         {
-          key: 'desc',
-          component: pfFormInput,
-          validators: {
-            [i18n.t('Description required.')]: required
-          }
-        }
-      ]
-    },
-    {
-      label: i18n.t('Priority'),
-      fields: [
+          label: i18n.t('Description'),
+          fields: [
+            {
+              key: 'desc',
+              component: pfFormInput,
+              validators: {
+                [i18n.t('Description required.')]: required
+              }
+            }
+          ]
+        },
         {
-          key: 'priority',
-          component: pfFormInput,
-          validators: {
-            [i18n.t('Priority required')]: required,
-            [i18n.t('Value must be numeric.')]: numeric,
-            [i18n.t('Value must be at least 1')]: minValue(1),
-            [i18n.t('Value must be maximum 10')]: maxValue(10)
-          }
-        }
-      ]
-    },
-    {
-      label: i18n.t('Ignored Roles'),
-      fields: [
+          label: i18n.t('Priority'),
+          fields: [
+            {
+              key: 'priority',
+              component: pfFormInput,
+              validators: {
+                [i18n.t('Priority required')]: required,
+                [i18n.t('Value must be numeric.')]: numeric,
+                [i18n.t('Value must be at least 1')]: minValue(1),
+                [i18n.t('Value must be maximum 10')]: maxValue(10)
+              }
+            }
+          ]
+        },
         {
-          key: 'whitelisted_roles',
-          component: pfFormChosen,
-          attrs: {
-            collapseObject: true,
-            placeholder: i18n.t('Click to select a role'),
-            trackBy: 'value',
-            label: 'text',
-            multiple: true,
-            clearOnSelect: false,
-            closeOnSelect: false,
-            options: context.roles.map(role => { return { value: role.name, text: role.name } })
-          }
-        }
-      ]
-    },
+          label: i18n.t('Ignored Roles'),
+          fields: [
+            {
+              key: 'whitelisted_roles',
+              component: pfFormChosen,
+              attrs: {
+                collapseObject: true,
+                placeholder: i18n.t('Click to select a role'),
+                trackBy: 'value',
+                label: 'text',
+                multiple: true,
+                clearOnSelect: false,
+                closeOnSelect: false,
+                options: context.roles.map(role => { return { value: role.name, text: role.name } })
+              }
+            }
+          ]
+        },
+      ],
+    }
   ]
 }
 
@@ -110,7 +119,7 @@ export const pfConfigurationSecurityEventListConfig = (context = {}) => {
     columns: pfConfigurationSecurityEventsListColumns,
     fields: pfConfigurationSecurityEventsListFields,
     rowClickRoute (item, index) {
-      return { name: 'violation', params: { id: item.id } }
+      return { name: 'security_event', params: { id: item.id } }
     },
     searchPlaceholder: $i18n.t('Search by name'),
     searchableOptions: {
@@ -127,7 +136,7 @@ export const pfConfigurationSecurityEventListConfig = (context = {}) => {
           ]
         }]
       },
-      defaultRoute: { name: 'violations' }
+      defaultRoute: { name: 'security_events' }
     },
     searchableQuickCondition: (quickCondition) => {
       return {
