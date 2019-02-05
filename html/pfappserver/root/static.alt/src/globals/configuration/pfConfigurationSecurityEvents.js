@@ -42,7 +42,11 @@ export const pfConfigurationSecurityEventsListFields = [
 ]
 
 export const pfConfigurationSecurityEventViewFields = (context = {}) => {
-  const { isNew = false, isClone = false } = context
+  const {
+      isNew = false,
+      isClone = false,
+      roles = []
+  } = context
   return [
     {
       tab: null, // ignore tabs
@@ -104,7 +108,7 @@ export const pfConfigurationSecurityEventViewFields = (context = {}) => {
                 multiple: true,
                 clearOnSelect: false,
                 closeOnSelect: false,
-                options: context.roles.map(role => { return { value: role.name, text: role.name } })
+                options: roles.map(role => { return { value: role.name, text: role.name } })
               }
             }
           ]
@@ -134,14 +138,13 @@ export const pfConfigurationSecurityEventViewFields = (context = {}) => {
 }
 
 export const pfConfigurationSecurityEventListConfig = (context = {}) => {
-  const { $i18n } = context
   return {
     columns: pfConfigurationSecurityEventsListColumns,
     fields: pfConfigurationSecurityEventsListFields,
     rowClickRoute (item, index) {
       return { name: 'security_event', params: { id: item.id } }
     },
-    searchPlaceholder: $i18n.t('Search by name'),
+    searchPlaceholder: i18n.t('Search by name'),
     searchableOptions: {
       //TODO: change once we rename API
       searchApiEndpoint: 'config/violations',

@@ -10,7 +10,7 @@
         <b-button variant="outline-primary" :to="{ name: 'newSecurityEvent' }">{{ $t('Add Security Event') }}</b-button>
       </template>
       <template slot="emptySearch">
-        <pf-empty-table :isLoading="isLoading">{{ $t('No security event found') }}</pf-empty-table>
+        <pf-empty-table :isLoading="isLoading">{{ $t('No security events found') }}</pf-empty-table>
       </template>
     </pf-config-list>
   </b-card>
@@ -33,6 +33,6 @@ export default {
     return {
       config: config(this)
     }
-  },
+  }
 }
 </script>
