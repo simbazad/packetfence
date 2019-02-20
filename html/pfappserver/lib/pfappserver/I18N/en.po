@@ -9813,6 +9813,10 @@ msgid "advanced.vlan_pool_technique"
 msgstr "VLAN pool technique"
 
 # conf/documentation.conf
+msgid "advanced.statsd_listen_port"
+msgstr "Statsd listen port"
+
+# conf/documentation.conf
 msgid "alerting"
 msgstr "Alerting"
 
