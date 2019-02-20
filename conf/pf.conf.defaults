@@ -871,6 +871,11 @@ multihost=disabled
 #
 # The algorithm used to calculate the VLAN in a VLAN pool.
 vlan_pool_technique = username_hash
+#
+# advanced.statsd_listen_port
+#
+# The port where statsd listen
+statsd_listen_port = 8125
 
 [provisioning]
 #
