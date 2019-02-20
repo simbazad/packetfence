@@ -323,6 +323,9 @@ our @API_V1_ROUTES = (
                 generate_csr => {
                     post => 'generate_csr',
                 },
+                lets_encrypt => {
+                    put => 'lets_encrypt_replace',
+                },
             }
         },
     },
