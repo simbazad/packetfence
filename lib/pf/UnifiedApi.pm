@@ -311,6 +311,13 @@ our @API_V1_ROUTES = (
     },
     {
         controller => 'Config::Certificates',
+        collection => {
+            subroutes => {
+                'lets_encrypt/test' => {
+                    get => 'lets_encrypt_test',
+                },
+            },
+        },
         resource => {
             http_methods => {
                 get => 'get',
