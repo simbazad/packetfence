@@ -990,9 +990,9 @@ sub trigger_scan :Public :Fork :AllowedAsAction($ip, mac, $mac, net_type, TYPE) 
         if (defined($scanner) && pf::util::isenabled($scanner->{'_post_registration'})) {
             $added = pf::security_event::security_event_add( $postdata{'mac'}, $pf::constants::scan::POST_SCAN_SECURITY_EVENT_ID );
         }
-        return if ($added == 0 || $added == -1);
+        return if (defined $added && ($added == 0 || $added == -1));
         sleep $pf::config::Config{'fencing'}{'wait_for_redirect'};
-        pf::scan::run_scan($postdata{'ip'}, $postdata{'mac'}) if ($added ne $pf::constants::scan::POST_SCAN_SECURITY_EVENT_ID);
+        pf::scan::run_scan($postdata{'ip'}, $postdata{'mac'}) if (defined $added && $added ne $pf::constants::scan::POST_SCAN_SECURITY_EVENT_ID);
     }
     else {
         my $profile = pf::Connection::ProfileFactory->instantiate($postdata{'mac'});
@@ -1001,9 +1001,9 @@ sub trigger_scan :Public :Fork :AllowedAsAction($ip, mac, $mac, net_type, TYPE) 
         if (defined($scanner) && pf::util::isenabled($scanner->{'_pre_registration'})) {
             $added = pf::security_event::security_event_add( $postdata{'mac'}, $pf::constants::scan::PRE_SCAN_SECURITY_EVENT_ID );
         }
-        return if ($added == 0 || $added == -1);
+        return if (defined $added && ($added == 0 || $added == -1));
         sleep $pf::config::Config{'fencing'}{'wait_for_redirect'};
-        pf::scan::run_scan($postdata{'ip'}, $postdata{'mac'}) if  ($added ne $pf::constants::scan::PRE_SCAN_SECURITY_EVENT_ID && $added ne $pf::constants::scan::SCAN_SECURITY_EVENT_ID);
+        pf::scan::run_scan($postdata{'ip'}, $postdata{'mac'}) if  (defined $added && $added ne $pf::constants::scan::PRE_SCAN_SECURITY_EVENT_ID && $added ne $pf::constants::scan::SCAN_SECURITY_EVENT_ID);
     }
     return;
 }
